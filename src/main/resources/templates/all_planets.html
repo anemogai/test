@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="table/table_style :: table_style">
+
+</head>
+<body>
+<header th:insert="header/header :: header"></header>
+
+<table align="right" >
+    <tr>
+        <th>planet id</th>
+        <th>planet name</th>
+        <th>overlord id</th>
+    </tr>
+    <div th:each="pl : ${planets}">
+        <tr>
+            <td th:text="${pl.planet_id}"/>
+            <td th:text="${pl.planet_name}"/>
+            <td th:text="${pl.overlord_id}"/>
+        </tr>
+    </div>
+
+</table>
+</body>
+</html>

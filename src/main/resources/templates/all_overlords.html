@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="table/table_style :: table_style">
+</head>
+<body>
+<header th:insert="header/header :: header"></header>
+
+<table align="right">
+    <tr>
+        <th>overlord id</th>
+        <th>overlord name</th>
+        <th>overlord age</th>
+    </tr>
+    <div th:each="ov : ${overlords}">
+        <tr>
+            <td th:text="${ov.id}"/>
+            <td th:text="${ov.name}"/>
+            <td th:text="${ov.age}"/>
+        </tr>
+    </div>
+
+</table>
+
+</body>
+</html>
