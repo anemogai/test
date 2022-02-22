@@ -58,7 +58,7 @@ public class PlanetController {
 
     @PostMapping("/appointOverlord")
     public String appointOverlord(@RequestParam String planetName, @RequestParam Integer overlordId){
-        if(!(planetsRepository.existsPlanetByPlanetName(planetName) && )){
+        if(!(planetsRepository.existsPlanetByPlanetName(planetName))){
             return "redirect:/planets/allPlanets";
         }
         Planet planet = planetsRepository.findByPlanetName(planetName);
