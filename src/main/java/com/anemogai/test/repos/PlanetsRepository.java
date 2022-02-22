@@ -6,5 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PlanetsRepository extends JpaRepository<Planet, Integer> {
-    //Planet removePlanetsByPlanetName(String planetName);
+    Planet removePlanetsByPlanetName(String planetName);
+    Planet findByPlanetName(String planetName);
+    boolean existsPlanetByPlanetName(String planetName);
 }

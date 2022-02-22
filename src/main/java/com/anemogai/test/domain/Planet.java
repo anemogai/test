@@ -10,53 +10,61 @@ public class Planet {
     @Id
     @Column(name = "planet_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer planet_id;
+    private Integer planetId;
 
     @Column(name = "planet_name")
-    private String planet_name;
+    private String planetName;
     @Column(name = "overlord_id")
-    private Integer overlord_id;
+    private Integer overlordId;
 
     public Planet() {
     }
 
-    public Planet(String planet_name) {
-        this.planet_name = planet_name;
+    public Planet(String planetName) {
+        this.planetName = planetName;
     }
 
-    public Planet(String planet_name, Integer overlord_id) {
-        this.planet_name = planet_name;
-        this.overlord_id = overlord_id;
+    public Planet(String planetName, Integer overlordId) {
+        this.planetName = planetName;
+        this.overlordId = overlordId;
+    }
+    public Planet(Integer planetId, String planetName, Integer overlordId) {
+        this.planetId = planetId;
+        this.planetName = planetName;
+        this.overlordId = overlordId;
     }
 
-    public Planet(Integer planet_id, String planet_name, Integer overlord_id) {
-        this.planet_id = planet_id;
-        this.planet_name = planet_name;
-        this.overlord_id = overlord_id;
+    public Integer getPlanetId() {
+        return planetId;
     }
 
-    public Integer getPlanet_id() {
-        return planet_id;
+    public void setPlanetId(Integer planetId) {
+        this.planetId = planetId;
     }
 
-    public void setPlanet_id(Integer planet_id) {
-        this.planet_id = planet_id;
+    public String getPlanetName() {
+        return planetName;
     }
 
-    public String getPlanet_name() {
-        return planet_name;
+    public void setPlanetName(String planetName) {
+        this.planetName = planetName;
     }
 
-    public void setPlanet_name(String planet_name) {
-        this.planet_name = planet_name;
+    public Integer getOverlordId() {
+        return overlordId;
     }
 
-    public Integer getOverlord_id() {
-        return overlord_id;
+    public void setOverlordId(Integer overlordId) {
+        this.overlordId = overlordId;
     }
 
-    public void setOverlord_id(Integer overlord_id) {
-        this.overlord_id = overlord_id;
+    @Override
+    public String toString() {
+        return "Planet{" +
+                "planetId=" + planetId +
+                ", planetName='" + planetName + '\'' +
+                ", overlordId=" + overlordId +
+                '}';
     }
 
     @Override
@@ -64,11 +72,11 @@ public class Planet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Planet planet = (Planet) o;
-        return Objects.equals(planet_id, planet.planet_id) && Objects.equals(planet_name, planet.planet_name) && Objects.equals(overlord_id, planet.overlord_id);
+        return Objects.equals(planetId, planet.planetId) && Objects.equals(planetName, planet.planetName) && Objects.equals(overlordId, planet.overlordId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(planet_id, planet_name, overlord_id);
+        return Objects.hash(planetId, planetName, overlordId);
     }
 }

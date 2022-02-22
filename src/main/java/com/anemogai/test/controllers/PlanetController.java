@@ -1,6 +1,7 @@
 package com.anemogai.test.controllers;
 
 import com.anemogai.test.domain.Planet;
+import com.anemogai.test.repos.OverlordsRepository;
 import com.anemogai.test.repos.PlanetsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,8 @@ public class PlanetController {
 
     @Autowired
     private PlanetsRepository planetsRepository;
-
+    @Autowired
+    private OverlordsRepository overlordsRepository;
 
     @GetMapping("/allPlanets")
     public String allLords(Model model){
@@ -28,8 +30,12 @@ public class PlanetController {
     }
 
     @PostMapping("/destroyPlanet")
-    public String destroyPlanetPost(@RequestParam String planet_name){
-        //Planet planet = planetsRepository.removePlanetsByPlanet_name(planet_name);
+    public String destroyPlanetPost(@RequestParam String planetName){
+        if(!planetsRepository.existsPlanetByPlanetName(planetName)){
+            return "redirect:/planets/allPlanets";
+        }
+        Planet planet = planetsRepository.findByPlanetName(planetName);
+        planetsRepository.delete(planet);
         return "redirect:/planets/allPlanets";
     }
 
@@ -39,12 +45,11 @@ public class PlanetController {
     }
 
     @PostMapping("/addPlanet")
-    public String addPlanetPost(@RequestParam String planet_name){
-        Planet planet = new Planet(planet_name, null);
+    public String addPlanetPost(@RequestParam String planetName){
+        Planet planet = new Planet(planetName, null);
         planetsRepository.save(planet);
         return "redirect:/planets/allPlanets";
     }
-
 
     @GetMapping("/appointOverlord")
     public String appoint(){
@@ -52,35 +57,13 @@ public class PlanetController {
     }
 
     @PostMapping("/appointOverlord")
-    public String appointOverlord(@RequestParam String planet_name, @RequestParam Integer overlord_id){
-        /*
-        List<Planet> planet
-        planet.setOverlord_id(overlord_id);
-        planetsRepository.save(planet);
-
-         */
-
-        return "redirect:/planets/allPlanets";
-    }
-
-    /*
-    @GetMapping("/appointOverlord")
-    public String appointOverlord(@PathVariable(value = "planet_id") Integer id, Model model){
-        if(!planetsRepository.existsById(id)){
+    public String appointOverlord(@RequestParam String planetName, @RequestParam Integer overlordId){
+        if(!(planetsRepository.existsPlanetByPlanetName(planetName) && )){
             return "redirect:/planets/allPlanets";
         }
-
-        Optional<Planet> planet = planetsRepository.findById(id);
-        ArrayList<Planet> res = new ArrayList<>();
-        planet.ifPresent(res ::add);
-        model.addAttribute("planet", planet);
-        return "appoint_overlord";
+        Planet planet = planetsRepository.findByPlanetName(planetName);
+        planet.setOverlordId(overlordId);
+        planetsRepository.save(planet);
+        return "redirect:/planets/allPlanets";
     }
-
-     */
-
-
-
-
-
 }

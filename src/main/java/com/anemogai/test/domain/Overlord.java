@@ -2,6 +2,7 @@ package com.anemogai.test.domain;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "overlords")
@@ -16,6 +17,9 @@ public class Overlord {
     private String name;
     @Column(name = "age")
     private Integer age;
+
+    @OneToMany
+    private Set<Planet> planetSet;
 
     public Overlord() {
     }
@@ -35,7 +39,7 @@ public class Overlord {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -51,8 +55,16 @@ public class Overlord {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public Set<Planet> getPlanetSet() {
+        return planetSet;
+    }
+
+    public void setPlanetSet(Set<Planet> planetSet) {
+        this.planetSet = planetSet;
     }
 
     @Override
