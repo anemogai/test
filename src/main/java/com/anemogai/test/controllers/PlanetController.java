@@ -27,9 +27,9 @@ public class PlanetController {
     }
 
     @PostMapping("/destroyPlanet")
-    public String destroyPlanetPost(@RequestParam String planet_name, Model model){
-        Planet planet = new Planet();
-        return "";
+    public String destroyPlanetPost(@RequestParam String planet_name){
+        Planet planet = new Planet(planet_name);
+        return "redirect:/planets/allPlanets";
     }
 
     @GetMapping("/addPlanet")
@@ -43,6 +43,22 @@ public class PlanetController {
         planetsRepository.save(planet);
         return "redirect:/planets/allPlanets";
     }
+
+    @GetMapping("/appointOverlord")
+    public String appoint(){
+        return "appoint_overlord";
+    }
+
+    /*
+    @PostMapping("/{id}/appointOverlord")
+    public String appointOverlord(@PathVariable(value = "planet_id") Integer id, Model model){
+        if(!planetsRepository.existsById(id)){
+            return "redirect:/planets/allPlanets";
+        }
+        return "";
+    }
+
+     */
 
 
 

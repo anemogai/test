@@ -10,15 +10,15 @@
 <header th:insert="header/header :: header"></header>
 
 <div class="box">
-    <h2>add new overlord</h2>
-    <form action="/overlords/addOverlord" method="post">
+    <h2>appoint an overlord to rule the planet</h2>
+    <form action="/planets/appointOverlord">
         <div class="input-box">
-            <input type="text" name="name">
-            <label>overlord name</label>
+            <input type="text" name="planet_name">
+            <label>planet name</label>
         </div>
         <div class="input-box">
-            <input type="text" name="age">
-            <label>overlord age</label>
+            <input type="text" name="overlord_id">
+            <label>id of overlord</label>
         </div>
         <button type="submit">
             <a>
@@ -26,7 +26,7 @@
                 <span></span>
                 <span></span>
                 <span></span>
-                add
+                appoint
             </a></button>
     </form>
 </div>

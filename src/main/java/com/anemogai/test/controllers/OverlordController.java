@@ -1,7 +1,6 @@
 package com.anemogai.test.controllers;
 
 import com.anemogai.test.domain.Overlord;
-import com.anemogai.test.domain.Planet;
 import com.anemogai.test.repo.OverlordsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
