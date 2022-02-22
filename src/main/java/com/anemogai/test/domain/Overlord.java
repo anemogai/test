@@ -16,6 +16,19 @@ public class Overlord {
     @Column(name = "age")
     private int age;
 
+    public Overlord() {
+    }
+
+    public Overlord(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public Overlord(int id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
 
     public int getId() {
         return id;
