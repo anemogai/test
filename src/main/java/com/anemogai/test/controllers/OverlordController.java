@@ -1,9 +1,7 @@
 package com.anemogai.test.controllers;
 
 import com.anemogai.test.domain.Overlord;
-import com.anemogai.test.domain.Planet;
 import com.anemogai.test.repo.OverlordsRepository;
-import com.anemogai.test.repo.PlanetsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +20,12 @@ public class OverlordController {
         Iterable<Overlord> overlords = overlordsRepository.findAll();
         model.addAttribute("overlords", overlords);
         return "all_overlords";
+    }
+
+
+    @GetMapping("/addOverlord")
+    public String addPlanet(){
+        return "add_overlord";
     }
 
 }
