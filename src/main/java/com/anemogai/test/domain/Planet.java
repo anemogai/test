@@ -9,7 +9,7 @@ public class Planet {
     @Id
     @Column(name = "planet_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int planet_id;
+    private Integer planet_id;
 
     @Column(name = "planet_name")
     private String planet_name;
@@ -23,12 +23,12 @@ public class Planet {
         this.planet_name = planet_name;
     }
 
-    public Planet(String planet_name, int overlord_id) {
+    public Planet(String planet_name, Integer overlord_id) {
         this.planet_name = planet_name;
         this.overlord_id = overlord_id;
     }
 
-    public Planet(int planet_id, String planet_name, Integer overlord_id) {
+    public Planet(Integer planet_id, String planet_name, Integer overlord_id) {
         this.planet_id = planet_id;
         this.planet_name = planet_name;
         this.overlord_id = overlord_id;
