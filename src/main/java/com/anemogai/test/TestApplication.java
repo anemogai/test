@@ -1,12 +1,11 @@
 package com.anemogai.test;
 
-import jdk.jfr.Enabled;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = "com.anemogai.test.repo")
+@EnableJpaRepositories(basePackages = "com.anemogai.test.repos")
 public class TestApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TestApplication.class, args);
