@@ -37,7 +37,6 @@ public class PlanetController {
         return "add_planet";
     }
 
-    //не работает, нужно вставить в бд int overlord_id = null
     @PostMapping("/addPlanet")
     public String addPlanetPost(@RequestParam String planet_name){
         Planet planet = new Planet(planet_name, null);
