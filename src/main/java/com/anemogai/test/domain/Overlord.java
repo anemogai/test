@@ -1,13 +1,15 @@
 package com.anemogai.test.domain;
 
-import lombok.Data;
-
+import lombok.*;
 import javax.persistence.*;
-
+import java.util.*;
 
 @Entity
 @Table(name = "overlords")
 @Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Overlord {
 
     @Id
@@ -18,16 +20,11 @@ public class Overlord {
 
     private Integer age;
 
-    public Overlord() {
-    }
+    @OneToMany(mappedBy = "overlord", fetch = FetchType.LAZY)
+    private List<Planet> planetList = new ArrayList<>();
+
 
     public Overlord(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    public Overlord(int id, String name, int age) {
-        this.id = id;
         this.name = name;
         this.age = age;
     }

@@ -1,12 +1,14 @@
 package com.anemogai.test.domain;
 
-import lombok.Data;
-
+import lombok.*;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "planets")
 @Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Planet  {
 
     @Id
@@ -16,24 +18,12 @@ public class Planet  {
 
     @Column(name = "planet_name")
     private String planetName;
-    @Column(name = "overlord_id")
-    private Integer overlordId;
 
-    public Planet() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "overlord_id")
+    private Overlord overlord;
 
     public Planet(String planetName) {
         this.planetName = planetName;
     }
-
-    public Planet(String planetName, Integer overlordId) {
-        this.planetName = planetName;
-        this.overlordId = overlordId;
-    }
-    public Planet(Integer planetId, String planetName, Integer overlordId) {
-        this.planetId = planetId;
-        this.planetName = planetName;
-        this.overlordId = overlordId;
-    }
-
 }

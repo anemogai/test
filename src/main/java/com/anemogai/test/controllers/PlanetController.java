@@ -1,8 +1,8 @@
 package com.anemogai.test.controllers;
 
+import com.anemogai.test.domain.Overlord;
 import com.anemogai.test.domain.Planet;
-import com.anemogai.test.repos.OverlordRepository;
-import com.anemogai.test.repos.PlanetRepository;
+import com.anemogai.test.services.impl.OverlordServiceImpl;
 import com.anemogai.test.services.impl.PlanetServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,10 +17,10 @@ public class PlanetController {
     private PlanetServiceImpl planetService;
 
     @Autowired
-    private OverlordRepository overlordRepository;
+    private OverlordServiceImpl overlordService;
 
     @GetMapping("/allPlanets")
-    public String allLords(Model model){
+    public String allPlanets(Model model){
         Iterable<Planet> planets = planetService.getAll();
         model.addAttribute("planets", planets);
         return "all/all_planets";
@@ -48,7 +48,7 @@ public class PlanetController {
 
     @PostMapping("/addPlanet")
     public String addPlanetPost(@RequestParam String planetName){
-        Planet planet = new Planet(planetName, null);
+        Planet planet = new Planet(planetName);
         planetService.planetAdd(planet);
         return "redirect:/planets/allPlanets";
     }
@@ -58,31 +58,20 @@ public class PlanetController {
         return "appoint/appoint_overlord";
     }
 
-    /*
+
     @PostMapping("/appointOverlord")
     public String appointOverlord(@RequestParam String planetName, @RequestParam Integer overlordId){
-        if(!(planetRepository.existsPlanetByPlanetName(planetName) && overlordRepository.existsById(overlordId))){
+        if(!(overlordService.existsOverlord(overlordId) || planetService.existsPlanet(planetName))) {
             return "redirect:/planets/allPlanets";
         }
-        Planet planet = planetRepository.findByPlanetName(planetName);
-        planet.setOverlordId(overlordId);
-        planetRepository.save(planet);
+        Planet planet = planetService.getByName(planetName);
+        Overlord overlord = overlordService.getById(overlordId);
+
+        planet.setOverlord(overlord);
+        planetService.planetAdd(planet);
+
         return "redirect:/planets/allPlanets";
     }
 
-     */
 
-    @GetMapping("/findBums")
-    public String findBums(Model model){
-        /*
-        if(!(planetsRepository.existsPlanetByPlanetName(planetName) && overlordsRepository.existsById(overlordId))){
-            return "redirect:/planets/allPlanets";
-        }
-        Planet planet = planetsRepository.findByPlanetName(planetName);
-        planet.setOverlordId(overlordId);
-        planetsRepository.save(planet);
-
-         */
-        return "all/all_bums";
-    }
 }

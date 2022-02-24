@@ -1,8 +1,8 @@
 package com.anemogai.test.controllers;
 
 import com.anemogai.test.domain.Overlord;
-import com.anemogai.test.repos.OverlordRepository;
 import com.anemogai.test.services.impl.OverlordServiceImpl;
+import com.anemogai.test.services.impl.PlanetServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +17,9 @@ public class OverlordController {
 
     @Autowired
     private OverlordServiceImpl overlordService;
+
+    @Autowired
+    private PlanetServiceImpl planetService;
 
     @GetMapping("/allOverlords")
     public String allLords(Model model){
@@ -38,8 +41,17 @@ public class OverlordController {
     }
 
     @GetMapping("/topOverlords")
-    public String topOverlords(){
-        return "top/top_overlords";
+    public String topOverlords(Model model){
+        Iterable<Overlord> overlords = overlordService.getTopThree();
+        model.addAttribute("overlords", overlords);
+        return "all/all_overlords";
+    }
+
+    @GetMapping("/allBums")
+    public String findBums(Model model){
+        Iterable<Overlord> overlords = overlordService.getBums();
+        model.addAttribute("overlords", overlords);
+        return "all/all_overlords";
     }
 
 }
