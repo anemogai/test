@@ -2,6 +2,7 @@ package com.anemogai.test.domain;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "planets")
@@ -17,6 +18,7 @@ public class Planet  {
     private Integer planetId;
 
     @Column(name = "planet_name")
+    @NotNull
     private String planetName;
 
     @ManyToOne

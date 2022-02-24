@@ -48,6 +48,9 @@ public class PlanetController {
 
     @PostMapping("/addPlanet")
     public String addPlanetPost(@RequestParam String planetName){
+        if(planetService.existsPlanet(planetName)){
+            return "redirect:/planets/allPlanets";
+        }
         Planet planet = new Planet(planetName);
         planetService.planetAdd(planet);
         return "redirect:/planets/allPlanets";
@@ -57,7 +60,6 @@ public class PlanetController {
     public String appoint(){
         return "appoint/appoint_overlord";
     }
-
 
     @PostMapping("/appointOverlord")
     public String appointOverlord(@RequestParam String planetName, @RequestParam Integer overlordId){
@@ -69,9 +71,6 @@ public class PlanetController {
 
         planet.setOverlord(overlord);
         planetService.planetAdd(planet);
-
         return "redirect:/planets/allPlanets";
     }
-
-
 }

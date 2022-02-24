@@ -8,9 +8,14 @@ import java.util.List;
 
 public interface OverlordService {
     List<Overlord> getAll();
+
     Overlord overlordAdd(Overlord overlord);
+
     Overlord getById(Integer overlordId);
+
     boolean existsOverlord(Integer overlordId);
+
     List<Overlord> getBums();
+
     List<Overlord> getTopThree();
 }
