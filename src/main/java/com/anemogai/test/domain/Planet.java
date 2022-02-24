@@ -1,11 +1,13 @@
 package com.anemogai.test.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "planets")
-public class Planet {
+@Data
+public class Planet  {
 
     @Id
     @Column(name = "planet_id")
@@ -34,49 +36,4 @@ public class Planet {
         this.overlordId = overlordId;
     }
 
-    public Integer getPlanetId() {
-        return planetId;
-    }
-
-    public void setPlanetId(Integer planetId) {
-        this.planetId = planetId;
-    }
-
-    public String getPlanetName() {
-        return planetName;
-    }
-
-    public void setPlanetName(String planetName) {
-        this.planetName = planetName;
-    }
-
-    public Integer getOverlordId() {
-        return overlordId;
-    }
-
-    public void setOverlordId(Integer overlordId) {
-        this.overlordId = overlordId;
-    }
-
-    @Override
-    public String toString() {
-        return "Planet{" +
-                "planetId=" + planetId +
-                ", planetName='" + planetName + '\'' +
-                ", overlordId=" + overlordId +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Planet planet = (Planet) o;
-        return Objects.equals(planetId, planet.planetId) && Objects.equals(planetName, planet.planetName) && Objects.equals(overlordId, planet.overlordId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(planetId, planetName, overlordId);
-    }
 }

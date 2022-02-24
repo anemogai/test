@@ -1,7 +1,8 @@
 package com.anemogai.test.controllers;
 
 import com.anemogai.test.domain.Overlord;
-import com.anemogai.test.repos.OverlordsRepository;
+import com.anemogai.test.repos.OverlordRepository;
+import com.anemogai.test.services.impl.OverlordServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,30 +16,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class OverlordController {
 
     @Autowired
-    private OverlordsRepository overlordsRepository;
+    private OverlordServiceImpl overlordService;
 
     @GetMapping("/allOverlords")
     public String allLords(Model model){
-        Iterable<Overlord> overlords = overlordsRepository.findAll();
+        Iterable<Overlord> overlords = overlordService.getAll();
         model.addAttribute("overlords", overlords);
-        return "all_overlords";
+        return "all/all_overlords";
     }
 
     @GetMapping("/addOverlord")
     public String addPlanet(){
-        return "add_overlord";
+        return "add/add_overlord";
     }
 
     @PostMapping("/addOverlord")
     public String addPlanetPost(@RequestParam String name, @RequestParam Integer age){
         Overlord overlord = new Overlord(name, age);
-        overlordsRepository.save(overlord);
+        overlordService.overlordAdd(overlord);
         return "redirect:/overlords/allOverlords";
     }
 
     @GetMapping("/topOverlords")
     public String topOverlords(){
-        return "top_overlords";
+        return "top/top_overlords";
     }
 
 }

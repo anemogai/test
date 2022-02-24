@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OverlordsRepository extends JpaRepository<Overlord, Integer> {
-    Overlord findByAge(Integer age);
+public interface OverlordRepository extends JpaRepository<Overlord, Integer> {
+    boolean existsById(Integer overlordId);
 }

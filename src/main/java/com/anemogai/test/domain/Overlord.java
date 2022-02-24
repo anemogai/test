@@ -1,25 +1,22 @@
 package com.anemogai.test.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
-import java.util.Objects;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "overlords")
+@Data
 public class Overlord {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "name")
     private String name;
-    @Column(name = "age")
-    private Integer age;
 
-    @OneToMany
-    private Set<Planet> planetSet;
+    private Integer age;
 
     public Overlord() {
     }
@@ -33,50 +30,5 @@ public class Overlord {
         this.id = id;
         this.name = name;
         this.age = age;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Set<Planet> getPlanetSet() {
-        return planetSet;
-    }
-
-    public void setPlanetSet(Set<Planet> planetSet) {
-        this.planetSet = planetSet;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Overlord overlord = (Overlord) o;
-        return Objects.equals(id, overlord.id) && Objects.equals(name, overlord.name) && Objects.equals(age, overlord.age);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, age);
     }
 }

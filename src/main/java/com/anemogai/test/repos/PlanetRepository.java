@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PlanetsRepository extends JpaRepository<Planet, Integer> {
-    Planet removePlanetsByPlanetName(String planetName);
+public interface PlanetRepository extends JpaRepository<Planet, Integer> {
+
     Planet findByPlanetName(String planetName);
     boolean existsPlanetByPlanetName(String planetName);
 }
